@@ -1,0 +1,4 @@
+activity/__pycache__
+activity/migrations
+work/__pycache__
+work/settings.py
