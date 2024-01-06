@@ -4,7 +4,8 @@ from .models import *
 
 # INSTRUCCIONES PARA EL TEMPLATE PRINCIPAL
 def main_activity (request):
-    return render(request,'main.html')
+    exercises = Exercises.objects.all()
+    return render(request,'main.html', {'exercises':exercises})
 
 
 
