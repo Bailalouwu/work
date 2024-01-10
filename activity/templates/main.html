@@ -7,11 +7,15 @@
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     </head>
     <body>
-        <h1>Esta pagina sirve para consultar tus ejercicios, rutinas, categorias y actividad</h1>
+        <h1 style="text-align: center;">Registro de actividades</h1>
+        <hr>
+        <i style="text-align: center;">Esta pagina sirve para consultar tus ejercicios, rutinas, categorias y actividad</i>
         <!--TABLA DE EJERCICIOS-->
         <div class="container">
             <div class="row justify-content-md-center">
-                <h1>TABLA DE EJERCICIOS</h1>
+                <h5>Lista de ejercicios</h5>
+                <br>
+                <br>
                 <div class="col-sm-12 col-md-12 col-xl-12 col-lg-12">
                     <div class="table-responsive">
                         <table id="exer_table" class="table table-striped table-bordered">
@@ -34,6 +38,7 @@
                                 {% endfor %}
                             </tbody>
                         </table>
+                        <button onclick="window.location.replace('/ejercicios')">Agregar nuevo ejercicio</button>
                     </div>
                 </div>
             </div>
