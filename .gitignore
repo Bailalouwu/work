@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-activity/__pycache__
-activity/migrations
-work/__pycache__
-=======
-activity/pycache
-activity/migrations
-work/pycache
->>>>>>> 4337f60a111452740c205725507b98e47f4a9a3c
+activity/__pycache__/*
+activity/migrations/*
+work/__pycache__/*
 work/settings.py
