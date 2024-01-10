@@ -6,10 +6,22 @@
     <title>Ejercicios</title>
 </head>
 <body>
-    <form method="post">
+    <form id="myForm" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Guardar">
+        <input type="submit" value="Guardar"/>
     </form>
 </body>
+<script>
+    // Captura el evento de submit del formulario
+    document.getElementById('myForm').addEventListener('submit', function() {
+        // Obtiene todos los campos del formulario
+        var campos = this.getElementsByTagName('input');
+        for (var i = 0; i < campos.length; i++) {
+            // Limpia el valor de cada campo
+            campos[i].value = '';
+        }
+        // Agrega aquí más líneas para limpiar otros tipos de campos como select, textarea, etc., si los tienes en tu formulario
+    });
+</script>
 </html>
