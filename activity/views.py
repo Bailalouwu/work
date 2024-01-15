@@ -11,15 +11,17 @@ def main_activity (request):
 
 # INSTRUCCIONES PARA EL TEMPLATE EJERCICIOS
 def exercises_create (request):
+    list = Category.objects.all()
     if request.method == 'POST':
-        form = exer_Form(request.POST)
-        if form.is_valid():
-            exercise = form.save(commit=False)
-            exercise.save()
-    else:
-        form = exer_Form()
-
-    return render(request, 'exercises.html', {'form': form})
+        name = request.POST['name']
+        description = request.POST['description']
+        category_id = request.POST['category']
+        try:
+            category = Category.objects.get(pk=category_id)
+        except Category.DoesNotExist:
+            category = None
+        Exercises.objects.create(name=name,description=description,category=category)
+    return render(request, 'exercises.html',{'list': list})
 
 
 # INSTRUCCIONES PARA EL TEMPLATE CATEGORIA

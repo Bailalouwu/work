@@ -15,9 +15,7 @@
             {% for exercise in exercises %}
                 <li>
                     <label>
-                        <input type="checkbox" name="exercises" value="{{ exercise.id }}">
-                        {{ exercise.name }}
-                    </label>
+                        <input type="checkbox" name="exercises" value="{{ exercise.id }}">{{ exercise.name }}</label>
                 </li>
             {% endfor %}
         </ul>

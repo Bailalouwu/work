@@ -8,20 +8,27 @@
 <body>
     <form id="myForm" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        <label>Nombre</label>
+        <input type="text" name="name">
+        <label>Descripción</label>
+        <input type="text" name="description">
+        <select name="category">
+            <option selected>Categoria</option>
+            {% for category in list %}
+            <option value="{{category.id}}">{{ category.name }}</option>
+            {%endfor%}
+        </select>
         <input type="submit" value="Guardar"/>
     </form>
 </body>
 <script>
-    // Captura el evento de submit del formulario
     document.getElementById('myForm').addEventListener('submit', function() {
-        // Obtiene todos los campos del formulario
         var campos = this.getElementsByTagName('input');
         for (var i = 0; i < campos.length; i++) {
-            // Limpia el valor de cada campo
-            campos[i].value = '';
+            if (campos[i].name !== 'csrfmiddlewaretoken') {
+                campos[i].value = '';
+            }
         }
-        // Agrega aquí más líneas para limpiar otros tipos de campos como select, textarea, etc., si los tienes en tu formulario
     });
 </script>
 </html>
