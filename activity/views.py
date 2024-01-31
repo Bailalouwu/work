@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from .forms import *
 from .models import *
 
@@ -21,6 +21,7 @@ def exercises_create (request):
         except Category.DoesNotExist:
             category = None
         Exercises.objects.create(name=name,description=description,category=category)
+        return redirect('/')
     return render(request, 'exercises.html',{'list': list})
 
 
@@ -46,7 +47,6 @@ def rutine_create (request):
         if form.is_valid():
             rutine = form.save(commit=False)
             rutine.save()
-
             exercises_list = request.POST.getlist('exercises')
             for exercise_id in exercises_list:
                 exercise = Exercises.objects.get(pk=exercise_id)
@@ -55,3 +55,9 @@ def rutine_create (request):
         form = ruti_Form()
     exercises = Exercises.objects.all()
     return render(request,'rutine.html', {'form': form, 'exercises': exercises})
+
+# INSTRUCCIONES PARA ELIMINAR EJERCICIOS
+def delete_exercise (request, id):
+    register = Exercises.objects.get(pk=id)
+    register.delete()
+    return redirect('/')

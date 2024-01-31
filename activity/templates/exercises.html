@@ -15,20 +15,12 @@
         <select name="category">
             <option selected>Categoria</option>
             {% for category in list %}
-            <option value="{{category.id}}">{{ category.name }}</option>
+            <option value="{{category.id}}">{{category.name}}</option>
             {%endfor%}
         </select>
         <input type="submit" value="Guardar"/>
     </form>
 </body>
 <script>
-    document.getElementById('myForm').addEventListener('submit', function() {
-        var campos = this.getElementsByTagName('input');
-        for (var i = 0; i < campos.length; i++) {
-            if (campos[i].name !== 'csrfmiddlewaretoken') {
-                campos[i].value = '';
-            }
-        }
-    });
 </script>
 </html>
