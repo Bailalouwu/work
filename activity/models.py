@@ -21,8 +21,8 @@ class Exercises (models.Model): #Tabla de ejercicios
 class Rutine (models.Model): #Pecho, espalda, brazo...
     name = models.CharField(max_length=30)
     exercises = models.ManyToManyField(Exercises)
-    repetitions = models.IntegerField()
-    series = models.IntegerField()
+    repetitions = models.IntegerField(default=0)
+    series = models.IntegerField(default=0)
     description = models.CharField(max_length=150)
     def __str__(self):
         return self.name

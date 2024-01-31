@@ -75,13 +75,19 @@
                         <table id="exer_table" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th></th>
+                                    <th>Nombre</th>
+                                    <th>Ejercicios</th>
+                                    <th>Descripción</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                {%for rutine in rutine%}
                                 <tr>
-                                    <td></td>
+                                    <td>{{rutine.name}}</td>
+                                    <td>{{rutine.exercises.name}}</td>
+                                    <td>{{rutine.description}}</td>
                                 </tr>
+                                {%endfor%}
                             </tbody>
                         </table>
                     </div>

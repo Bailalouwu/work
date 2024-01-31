@@ -5,7 +5,12 @@ from .models import *
 # INSTRUCCIONES PARA EL TEMPLATE PRINCIPAL
 def main_activity (request):
     exercises = Exercises.objects.all()
-    return render(request,'main.html', {'exercises':exercises})
+    rutine = Rutine.objects.all()
+    context = {
+        'exercises':exercises,
+        'rutine':rutine
+    }
+    return render(request,'main.html', context)
 
 
 
