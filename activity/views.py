@@ -5,10 +5,10 @@ from .models import *
 # INSTRUCCIONES PARA EL TEMPLATE PRINCIPAL
 def main_activity (request):
     exercises = Exercises.objects.all()
-    rutine = Rutine.objects.all()
+    rutines = Rutine.objects.all()
     context = {
         'exercises':exercises,
-        'rutine':rutine
+        'rutines':rutines,
     }
     return render(request,'main.html', context)
 
@@ -29,6 +29,31 @@ def exercises_create (request):
         return redirect('/')
     return render(request, 'exercises.html',{'list': list})
 
+# INSTRUCCIONES PARA ELIMINAR EJERCICIOS
+def delete_exercise (request, id):
+    register = Exercises.objects.get(pk=id)
+    register.delete()
+    return redirect('/')
+
+def update_exercise (request,id):
+    exercise = Exercises.objects.get(pk=id)
+    category = Category.objects.all()
+    return render(request,'update_exercise.html',{'exercise':exercise,'category':category})
+
+def change_exercise(request, id):
+    exercise = Exercises.objects.get(pk=id)
+    name = request.POST['name']
+    description = request.POST['description']
+    category_id = request.POST['category']
+    try:
+        category = Category.objects.get(pk=category_id)
+    except Category.DoesNotExist:
+        category = None
+    exercise.name = name
+    exercise.description = description
+    exercise.category = category
+    exercise.save()
+    return redirect('/')
 
 # INSTRUCCIONES PARA EL TEMPLATE CATEGORIA
 def category_create(request):
@@ -60,9 +85,3 @@ def rutine_create (request):
         form = ruti_Form()
     exercises = Exercises.objects.all()
     return render(request,'rutine.html', {'form': form, 'exercises': exercises})
-
-# INSTRUCCIONES PARA ELIMINAR EJERCICIOS
-def delete_exercise (request, id):
-    register = Exercises.objects.get(pk=id)
-    register.delete()
-    return redirect('/')
